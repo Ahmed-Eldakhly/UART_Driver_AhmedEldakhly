@@ -112,7 +112,7 @@ LOAD e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x548
+.text           0x00000000      0x5e0
  *(.vectors)
  .vectors       0x00000000       0x54 e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -190,32 +190,32 @@ LOAD e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x0000006c                . = ALIGN (0x2)
  *(.text.*)
  .text.UART_Init
-                0x0000006c      0x27a ./UART_prog.o
+                0x0000006c      0x2ce ./UART_prog.o
                 0x0000006c                UART_Init
  .text.UART_ReceiveChar
-                0x000002e6       0x58 ./UART_prog.o
-                0x000002e6                UART_ReceiveChar
+                0x0000033a       0x6c ./UART_prog.o
+                0x0000033a                UART_ReceiveChar
  .text.UART_SendChar
-                0x0000033e       0x40 ./UART_prog.o
-                0x0000033e                UART_SendChar
+                0x000003a6       0x70 ./UART_prog.o
+                0x000003a6                UART_SendChar
  .text.UART_Receive
-                0x0000037e       0x6e ./UART_prog.o
-                0x0000037e                UART_Receive
+                0x00000416       0x6e ./UART_prog.o
+                0x00000416                UART_Receive
  .text.UART_Send
-                0x000003ec       0x6c ./UART_prog.o
-                0x000003ec                UART_Send
+                0x00000484       0x6c ./UART_prog.o
+                0x00000484                UART_Send
  .text.UART_StartComm
-                0x00000458       0x6a ./UART_prog.o
-                0x00000458                UART_StartComm
+                0x000004f0       0x6a ./UART_prog.o
+                0x000004f0                UART_StartComm
  .text.UART_StopComm
-                0x000004c2       0x82 ./UART_prog.o
-                0x000004c2                UART_StopComm
- .text.libgcc   0x00000544        0x0 e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00000544                . = ALIGN (0x2)
+                0x0000055a       0x82 ./UART_prog.o
+                0x0000055a                UART_StopComm
+ .text.libgcc   0x000005dc        0x0 e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000005dc                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000544        0x0 e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00000544                exit
-                0x00000544                _exit
+ .fini9         0x000005dc        0x0 e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000005dc                exit
+                0x000005dc                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -234,11 +234,11 @@ LOAD e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000544        0x4 e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x000005dc        0x4 e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000548                _etext = .
+                0x000005e0                _etext = .
 
-.data           0x00800060        0x0 load address 0x00000548
+.data           0x00800060        0x0 load address 0x000005e0
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -261,8 +261,8 @@ LOAD e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.bss*)
  *(COMMON)
                 0x00800060                PROVIDE (__bss_end, .)
-                0x00000548                __data_load_start = LOADADDR (.data)
-                0x00000548                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000005e0                __data_load_start = LOADADDR (.data)
+                0x000005e0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800060        0x0
                 0x00800060                PROVIDE (__noinit_start, .)
@@ -287,9 +287,9 @@ LOAD e:/imt/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000      0x828
+.stab           0x00000000      0x8dc
  *(.stab)
- .stab          0x00000000      0x828 ./UART_prog.o
+ .stab          0x00000000      0x8dc ./UART_prog.o
 
 .stabstr        0x00000000      0x66b
  *(.stabstr)

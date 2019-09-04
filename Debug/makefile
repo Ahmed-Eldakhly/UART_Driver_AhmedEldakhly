@@ -30,41 +30,50 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-UART_Driver_Sprints.lss \
+UART_Driver_Sprints_Experiment.lss \
+
+FLASH_IMAGE += \
+UART_Driver_Sprints_Experiment.hex \
 
 SIZEDUMMY += \
 sizedummy \
 
 
 # All Target
-all: UART_Driver_Sprints.elf secondary-outputs
+all: UART_Driver_Sprints_Experiment.elf secondary-outputs
 
 # Tool invocations
-UART_Driver_Sprints.elf: $(OBJS) $(USER_OBJS)
+UART_Driver_Sprints_Experiment.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,UART_Driver_Sprints.map -mmcu=atmega32 -o "UART_Driver_Sprints.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,UART_Driver_Sprints_Experiment.map -mmcu=atmega32 -o "UART_Driver_Sprints_Experiment.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-UART_Driver_Sprints.lss: UART_Driver_Sprints.elf
+UART_Driver_Sprints_Experiment.lss: UART_Driver_Sprints_Experiment.elf
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S UART_Driver_Sprints.elf  >"UART_Driver_Sprints.lss"
+	-avr-objdump -h -S UART_Driver_Sprints_Experiment.elf  >"UART_Driver_Sprints_Experiment.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: UART_Driver_Sprints.elf
+UART_Driver_Sprints_Experiment.hex: UART_Driver_Sprints_Experiment.elf
+	@echo 'Create Flash image (ihex format)'
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex UART_Driver_Sprints_Experiment.elf  "UART_Driver_Sprints_Experiment.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+sizedummy: UART_Driver_Sprints_Experiment.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 UART_Driver_Sprints.elf
+	-avr-size --format=avr --mcu=atmega32 UART_Driver_Sprints_Experiment.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) UART_Driver_Sprints.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) UART_Driver_Sprints_Experiment.elf
 	-@echo ' '
 
-secondary-outputs: $(LSS) $(SIZEDUMMY)
+secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)
 
 .PHONY: all clean dependents
 .SECONDARY:
